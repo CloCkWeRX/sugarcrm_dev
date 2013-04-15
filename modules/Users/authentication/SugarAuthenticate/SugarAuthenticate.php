@@ -314,7 +314,10 @@ class SugarAuthenticate{
 	 *
 	 */
 	function logout(){
-			session_destroy();
+			if (session_id()) {
+				session_destroy();
+			}
+
 			ob_clean();
 			header('Location: index.php?module=Users&action=Login');
 			sugar_cleanup(true);
